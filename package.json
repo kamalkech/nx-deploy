@@ -4,8 +4,16 @@
   "license": "MIT",
   "scripts": {
     "start": "nx serve",
-    "build": "nx build",
-    "test": "nx test"
+    "affected:deploy": "nx affected --target=deploy",
+    "test": "nx test",
+    "build": "run-s build:nx-server build:nx-client build:docker",
+    "build:nx-server": "ng build nx-server",
+    "build:nx-client": "ng build nx-client --prod",
+    "build:docker": "run-s docker:build-nx-server docker:build-nx-client",
+    "docker:build-nx-server": "docker image build -t nx-server -f dc-server.Dockerfile .",
+    "docker:build-nx-client": "docker image build -t nx-client -f dc-client.Dockerfile .",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down"
   },
   "private": true,
   "dependencies": {
