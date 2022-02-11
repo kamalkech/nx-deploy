@@ -1,8 +1,8 @@
 version: '3.8'
 
-# networks:
-#   corp:
-#     driver: bridge
+networks:
+  corp:
+    driver: bridge
 
 services:
   server:
@@ -10,7 +10,7 @@ services:
     build:
       context: ./
       cache_from:
-        - nx-docker-nest-next
+        - nx-docker-nest-next:nx-base
       dockerfile: ./apps/server/Dockerfile
       args:
         NODE_ENV: 'development'
@@ -21,8 +21,8 @@ services:
     environment:
       NODE_ENV: 'development'
       PORT: 3000
-    # networks:
-    #   - corp
+    networks:
+      - corp
     restart: on-failure
 
   client:
@@ -30,7 +30,7 @@ services:
     build:
       context: ./
       cache_from:
-        - nx-docker-nest-next
+        - nx-docker-nest-next:nx-base
       dockerfile: ./apps/client/Dockerfile
       args:
         NODE_ENV: 'development'
@@ -41,6 +41,6 @@ services:
     environment:
       NODE_ENV: 'development'
       PORT: 4200
-    # networks:
-    #   - corp
+    networks:
+      - corp
     restart: on-failure

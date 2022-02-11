@@ -1,4 +1,4 @@
-FROM nx-docker-nest-next AS builder
+FROM nx-docker-nest-next:nx-base AS builder
 
 ARG NODE_ENV
 ARG BUILD_FLAG
@@ -6,7 +6,7 @@ WORKDIR /app/builder
 COPY . .
 RUN npx nx build client ${BUILD_FLAG}
 
-FROM nx-docker-nest-next
+FROM nx-docker-nest-next:nx-base
 
 WORKDIR /app
 
