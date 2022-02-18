@@ -10,12 +10,12 @@ services:
     build:
       context: ./
       cache_from:
-        - nx-docker-nest-next:nx-base
+        - nx-docker-nest-next
       dockerfile: ./apps/server/Dockerfile
       args:
         NODE_ENV: 'development'
         BUILD_FLAG: ''
-    image: server:nx-dev
+    image: nx-docker-server
     ports:
       - 3000:3000
     environment:
@@ -25,22 +25,22 @@ services:
       - corp
     restart: on-failure
 
-  client:
-    container_name: client
-    build:
-      context: ./
-      cache_from:
-        - nx-docker-nest-next:nx-base
-      dockerfile: ./apps/client/Dockerfile
-      args:
-        NODE_ENV: 'development'
-        BUILD_FLAG: ''
-    image: client:nx-dev
-    ports:
-      - 4200:4200
-    environment:
-      NODE_ENV: 'development'
-      PORT: 4200
-    networks:
-      - corp
-    restart: on-failure
+  # client:
+  #   container_name: client
+  #   build:
+  #     context: ./
+  #     cache_from:
+  #       - nx-docker-nest-next
+  #     dockerfile: ./apps/client/Dockerfile
+  #     args:
+  #       NODE_ENV: 'development'
+  #       BUILD_FLAG: ''
+  #   image: nx-docker-client
+  #   ports:
+  #     - 8080:4200
+  #   environment:
+  #     NODE_ENV: 'development'
+  #     PORT: 4200
+  #   networks:
+  #     - corp
+  #   restart: on-failure

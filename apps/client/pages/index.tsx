@@ -1,4 +1,5 @@
 import styles from './index.module.scss';
+import Header from '@/layout/Header';
 
 export function Index() {
   /*
@@ -13,7 +14,7 @@ export function Index() {
           <div id="welcome">
             <h1>
               <span> Hello there, </span>
-              Welcome client 👋
+              Welcome client 👋 on AWS 2022
             </h1>
           </div>
 
